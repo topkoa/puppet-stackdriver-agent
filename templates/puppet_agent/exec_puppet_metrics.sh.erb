@@ -1,0 +1,31 @@
+INTERVAL="60"
+HOSTNAME=`hostname`
+
+YAMLFILE="/opt/puppetlabs/puppet/cache/state/last_run_summary.yaml"
+
+TIMENOW=`date +%s`
+
+# Parse YAML Last Run output from Puppet Agent
+yaml() {
+  /usr/bin/python -c "import yaml;print(yaml.load(open('$1'))$2)"
+}
+
+while sleep "$INTERVAL"; do
+
+  TIMENOW=`date +%s`
+
+  P_LAST_RUN=`echo $(( $TIMENOW - $(yaml $YAMLFILE "['time']['last_run']") ))`
+  P_RUN_TIME=`printf "%0.2f\n" $(yaml $YAMLFILE "['time']['total']")`
+  P_EVENTS_TOTAL=$(yaml $YAMLFILE "['events']['total']")
+  P_CHANGES_TOTAL=$(yaml $YAMLFILE "['changes']['total']")
+  P_EVENTS_SUCCESS=$(yaml $YAMLFILE "['events']['success']")
+  P_EVENTS_FAILURE=$(yaml $YAMLFILE "['events']['failure']")
+
+  echo "PUTVAL \"$HOSTNAME/check_puppet-get_last_run/gauge-last_run_seconds\" interval=60 $TIMENOW:$P_LAST_RUN"
+  echo "PUTVAL \"$HOSTNAME/check_puppet-get_last_run/gauge-last_run_events_total\" interval=60 $TIMENOW:$P_EVENTS_TOTAL"
+  echo "PUTVAL \"$HOSTNAME/check_puppet-get_last_run/gauge-last_run_duration\" interval=60 $TIMENOW:$P_RUN_TIME"
+  echo "PUTVAL \"$HOSTNAME/check_puppet-get_last_run/gauge-last_run_total_changes\" interval=60 $TIMENOW:$P_CHANGES_TOTAL"
+  echo "PUTVAL \"$HOSTNAME/check_puppet-get_last_run/gauge-last_run_total_events_success\" interval=60 $TIMENOW:$P_EVENTS_SUCCESS"
+  echo "PUTVAL \"$HOSTNAME/check_puppet-get_last_run/gauge-last_run_total_events_failure\" interval=60 $TIMENOW:$P_EVENTS_FAILURE"
+
+done

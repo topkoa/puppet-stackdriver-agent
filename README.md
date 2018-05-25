@@ -157,6 +157,27 @@ stackdriver::plugin::exec_custom::custom_rules:
     sd_metric_type:  'custom.googleapis.com/puppet/events_total'
 ```
 
+### Puppet Agent 
+
+
+```yaml
+stackdriver::plugins:
+  - 'puppet_agent'
+
+stackdriver::plugin::puppet_agent::custom_rules:
+  - type_instance:   'last_run_seconds'
+    sd_metric_type:  'custom.googleapis.com/puppet/last_run/seconds_elapsed'
+  - type_instance:   'last_run_events_total'
+    sd_metric_type:  'custom.googleapis.com/puppet/last_run/events_total'
+  - type_instance:   'last_run_duration'
+    sd_metric_type:  'custom.googleapis.com/puppet/last_run/run_duration'
+  - type_instance:   'last_run_total_changes'
+    sd_metric_type:  'custom.googleapis.com/puppet/last_run/total_changes'
+  - type_instance:   'last_run_total_events_success'
+    sd_metric_type:  'custom.googleapis.com/puppet/last_run/events_success'
+  - type_instance:   'last_run_total_events_failure'
+    sd_metric_type:  'custom.googleapis.com/puppet/last_run/events_failure'
+```
 
 ### Redis
 
