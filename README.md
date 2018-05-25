@@ -135,9 +135,9 @@ The script that is run must output a PUTVAL in the following format:
 Example:
 ```
 # Example:
-#   PUTVAL "ge-lxsjbsapi01/check_puppet-get_last_run/gauge-last_run_seconds" interval=60 1527190805:761
-#           -------------- ------------ ------------ ----- ----------------              ---------- ---
-#           \Hostname      \Plugin      \PluginType  \Type \TypeInstance                 \timestamp \Value
+#   PUTVAL "hostname-99/check_puppet-get_last_run/gauge-last_run_seconds" interval=60 1527190805:761
+#           ----------- ------------ ------------ ----- ----------------              ---------- ---
+#           \Hostname   \Plugin      \PluginType  \Type \TypeInstance                 \timestamp \Value
 #
 ```
 
