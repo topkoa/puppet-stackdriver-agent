@@ -27,8 +27,8 @@ class stackdriver::plugin::puppet_agent::config(
   # and the permissions need to allow for this.
   file { '/opt/puppetlabs/puppet/cache':
     ensure => 'directory',
-    owner  => 'puppet',
-    group  => 'puppet',
+    owner  => 'root',
+    group  => 'root',
     mode   => '0751'
   }
 
