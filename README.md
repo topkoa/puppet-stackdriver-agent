@@ -142,6 +142,10 @@ Example:
 ```
 
 ```yaml
+
+stackdriver::plugins:
+    - 'exec_custom'
+
 stackdriver::plugin::exec_custom::custom_rules:
   - type_instance:   'root_dir_count'
     metric_type:     'gauge'
