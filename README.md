@@ -190,6 +190,15 @@ stackdriver::plugin::puppet_agent::custom_rules:
     sd_metric_type:  'custom.googleapis.com/puppet/last_run/events_failure'
 ```
 
+### Cassandra 
+
+Configures the Cassandra plugin (Currently only supports Cassandra v2.2.x)
+
+```yaml
+stackdriver::plugins:
+  - 'cassandra'
+```
+
 ### Redis
 
 Configures the redis plugin on the local host running on port 6379.
