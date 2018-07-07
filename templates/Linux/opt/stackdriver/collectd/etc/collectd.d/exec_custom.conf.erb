@@ -21,7 +21,7 @@ LoadPlugin exec
            'matchpath'        => @matchpath 
      }.merge(custom_rule) -%>
 
-  Exec "nobody:nobody" "/opt/stackdriver/collectd/etc/scripts/exec_custom.py" <% if z['interval'] -%>"-I <%= z['interval'] %>"<% end -%> <% if z['exec_cmd'] -%>"-e `<%= z['exec_cmd'] %>`"<% end -%> <% if z['yamlfile'] -%>"-y <%= z['yamlfile'] %>"<% end -%> <% if z['jsonfile'] -%>"-j <%= z['jsonfile'] %>"<% end -%> <% if z['matchpath'] -%>"-jsonpath <%= z['matchpath'] %>"<% end -%> "-p <%= z['plugin_name'] %>" "-i <%= z['plugin_instance'] %>" "-t <%= z['metric_type'] %>" "-T <%= z['type_instance'] %>" 
+  Exec "nobody:nobody" "/opt/stackdriver/collectd/etc/scripts/exec_custom.py" <% if z['interval'] -%>"-I <%= z['interval'] %>"<% end -%> <% if z['exec_cmd'] -%>"-e `<%= z['exec_cmd'] %>`"<% end -%> <% if z['yamlfile'] -%>"-y <%= z['yamlfile'] %>"<% end -%> <% if z['jsonfile'] -%>"-j <%= z['jsonfile'] %>"<% end -%> <% if z['matchpath'] -%>"-P <%= z['matchpath'] %>"<% end -%> "-p <%= z['plugin_name'] %>" "-i <%= z['plugin_instance'] %>" "-t <%= z['metric_type'] %>" "-T <%= z['type_instance'] %>" 
 <% end -%>
 </Plugin>
 
